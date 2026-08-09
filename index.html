@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOGP | Krewe of Grady Pough, Sr.</title>
+  <meta name="description" content="KOGP empowers deserving students through educational scholarships and community fundraising." />
+
+  <style>
+    :root{
+      --purple:#351044;
+      --purple-dark:#16051f;
+      --purple-deep:#0d0610;
+      --gold:#d9b15f;
+      --gold-bright:#f0c76b;
+      --cream:#f7efe2;
+      --text:#211827;
+      --muted:#665b68;
+      --white:#ffffff;
+      --shadow:0 18px 50px rgba(0,0,0,.18);
+      --radius:24px;
+      --max:1600px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Georgia, 'Times New Roman', serif;
+      color:var(--text);
+      background:var(--cream);
+      line-height:1.65;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;height:auto}
+    .container{width:min(100% - 24px, var(--max));margin:0 auto}
+
+    .topbar{
+      background:linear-gradient(90deg,#2b0b36,#4a165d,#2b0b36);
+      color:#fff;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:.95rem;
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:48px}
+    .topbar-left,.topbar-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+    .topbar span{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.9)}
+    .topbar .donate-top{align-self:stretch;display:inline-flex;align-items:center;padding:0 32px;background:linear-gradient(180deg,#f5cd72,#c7953d);color:#1c0c05;font-weight:800;letter-spacing:.04em}
+
+    .site-header{background:#060506;color:#fff;border-bottom:1px solid rgba(217,177,95,.45);position:sticky;top:0;z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:94px}
+    .brand{display:flex;align-items:center;gap:18px;min-width:330px}
+    .brand img{width:92px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
+    .brand-text{line-height:1.05;text-align:center;color:var(--gold-bright);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(1.1rem,2vw,1.72rem)}
+    .brand-text small{display:block;font-size:.62em;letter-spacing:.18em;margin-top:4px;color:#e7c67d}
+    .nav-links{display:flex;align-items:center;gap:34px;font-family:Arial, Helvetica, sans-serif;font-weight:800;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+    .nav-links a{color:#fff;opacity:.96;padding:34px 0;border-bottom:2px solid transparent}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright)}
+
+    .hero{
+      background:
+        radial-gradient(circle at 18% 20%, rgba(217,177,95,.20), transparent 28%),
+        radial-gradient(circle at 86% 48%, rgba(90,29,122,.26), transparent 30%),
+        linear-gradient(135deg,#120714 0%,#351044 58%,#0a050d 100%);
+      color:#fff;
+      padding:64px 0;
+      border-bottom:1px solid rgba(217,177,95,.35);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+    .hero h1{font-size:clamp(2.8rem,5vw,5.8rem);line-height:1.02;margin:0 0 18px;color:#fff;text-shadow:0 8px 28px rgba(0,0,0,.5)}
+    .hero h1 span{color:var(--gold-bright)}
+    .hero p{font-family:Arial, Helvetica, sans-serif;font-size:clamp(1.05rem,1.4vw,1.35rem);max-width:62ch;color:rgba(255,255,255,.9);margin:0 0 28px}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+    .hero-card{background:rgba(0,0,0,.22);border:1px solid rgba(217,177,95,.35);border-radius:var(--radius);padding:32px;text-align:center;box-shadow:var(--shadow)}
+    .hero-card img{width:270px;display:block;margin:0 auto 18px;filter:drop-shadow(0 14px 24px rgba(0,0,0,.4))}
+    .hero-card h3{font-size:1.6rem;margin:0 0 12px;color:var(--gold-bright)}
+    .hero-card p{font-size:1rem;margin:0;color:rgba(255,255,255,.86)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;font-family:Arial, Helvetica, sans-serif;font-weight:800;letter-spacing:.02em;min-width:170px;transition:all .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(180deg,#f5cd72,#c7953d);color:#1c0c05;box-shadow:0 14px 28px rgba(217,177,95,.25)}
+    .btn-outline{border:1px solid rgba(217,177,95,.65);color:#fff;background:rgba(255,255,255,.05)}
+
+    section{padding:64px 0}
+    .legacy-section{
+      background:
+        radial-gradient(circle at 5% 35%, rgba(217,177,95,.10), transparent 20%),
+        radial-gradient(circle at 95% 50%, rgba(217,177,95,.08), transparent 25%),
+        linear-gradient(180deg,#070607 0%,#121013 100%);
+      color:#fff;
+      padding:72px 0 64px;
+    }
+    .legacy-panel{display:grid;grid-template-columns:.86fr 1.14fr;gap:58px;align-items:center}
+    .legacy-image-wrap{border:2px solid rgba(217,177,95,.86);border-radius:18px;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.55);background:#000}
+    .legacy-image{display:block;width:100%;height:100%;object-fit:cover}
+    .legacy-copy{text-align:left}
+    .legacy-flourish{display:flex;align-items:center;justify-content:center;gap:18px;color:var(--gold-bright);margin-bottom:12px}
+    .legacy-flourish::before,.legacy-flourish::after{content:"";height:1px;background:linear-gradient(90deg,transparent,var(--gold));flex:1;max-width:230px}.legacy-flourish::after{background:linear-gradient(90deg,var(--gold),transparent)}
+    .legacy-eyebrow{text-align:center;text-transform:uppercase;letter-spacing:.18em;color:var(--gold-bright);font-weight:800;font-size:clamp(1.05rem,1.8vw,1.7rem);margin:0 0 4px}
+    .legacy-name{text-align:center;font-size:clamp(3.2rem,6vw,6.4rem);line-height:.98;margin:0 0 22px;color:#fff;text-shadow:0 10px 28px rgba(0,0,0,.55)}
+    .legacy-divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px;max-width:700px;position:relative}
+    .legacy-copy h3{color:var(--gold-bright);text-transform:uppercase;letter-spacing:.1em;font-size:clamp(1.18rem,2vw,1.65rem);margin:0 0 14px}
+    .legacy-copy p{font-size:clamp(1rem,1.25vw,1.25rem);margin:0 0 18px;color:rgba(255,255,255,.94)}
+
+    .about-section{background:var(--cream)}
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+    .section-label{display:flex;align-items:center;gap:16px;color:var(--gold);font-size:1.15rem;margin-bottom:8px}.section-label::before,.section-label::after{content:"";height:1px;background:var(--gold);width:110px}.section-label::after{width:50px}
+    .section-title{font-size:clamp(2.3rem,4vw,4.2rem);line-height:1.05;margin:0 0 22px;color:var(--purple-dark)}
+    .about-card{background:#fff;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow);border:1px solid rgba(217,177,95,.18)}
+    .about-card p{font-family:Arial, Helvetica, sans-serif;color:#302835;font-size:1.1rem;margin:0 0 18px}.about-card p:last-child{margin-bottom:0}
+    .about-image{border-radius:22px;overflow:hidden;box-shadow:var(--shadow);min-height:310px;background:linear-gradient(135deg,var(--purple),#090609);display:flex;align-items:center;justify-content:center;color:var(--gold);padding:42px;text-align:center;border:1px solid rgba(217,177,95,.35)}
+    .about-image img{max-width:300px;filter:drop-shadow(0 14px 24px rgba(0,0,0,.35))}
+
+    .support-section{background:#fff;padding-top:40px}
+    .support-grid{display:grid;grid-template-columns:1.15fr repeat(3,1fr);gap:22px}
+    .cta-box{padding:28px;border-radius:20px;background:linear-gradient(180deg,#fff 0%,#fbf7ff 100%);border:1px solid #eadfc8;box-shadow:0 10px 24px rgba(0,0,0,.07)}
+    .cta-box.featured{background:linear-gradient(135deg,#351044,#130719);color:#fff;border-color:rgba(217,177,95,.35)}
+    .cta-box h3{margin:0 0 14px;font-size:1.45rem;color:var(--purple-dark)}.cta-box.featured h3{color:var(--gold-bright)}
+    .cta-box p{font-family:Arial, Helvetica, sans-serif;margin:0;color:#453b47}.cta-box.featured p{color:rgba(255,255,255,.88)}
+
+    .footer{background:#080608;color:rgba(255,255,255,.76);text-align:center;padding:34px 0;font-family:Arial, Helvetica, sans-serif;border-top:1px solid rgba(217,177,95,.35)}
+
+    @media (max-width:1100px){
+      .nav{align-items:flex-start;flex-direction:column;padding:18px 0}.brand{min-width:0}.nav-links{width:100%;overflow-x:auto;gap:22px}.nav-links a{padding:10px 0 14px}.hero-grid,.legacy-panel,.about-grid,.support-grid{grid-template-columns:1fr}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .container{width:min(100% - 18px,var(--max))}.topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{padding:24px}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.about-card,.cta-box{padding:22px}.support-grid{grid-template-columns:1fr}.section-label::before{width:70px}.section-title{font-size:2.3rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span>✉ kogp.treasurer@gmail.com</span>
+        <span>☎ 251-404-9189</span>
+        <span>📍 Mobile, Alabama</span>
+      </div>
+      <div class="topbar-right">
+        <a class="donate-top" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">DONATE</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="KOGP Home">
+        <img src="asset_folder/kogp-logo.png" alt="KOGP Crest Logo">
+        <div class="brand-text">Krewe of<br>Grady Pough, Sr.<small>KOGP</small></div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="active" href="#top">Home</a>
+        <a href="#about">About KOGP</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="#ball">Mardi Gras Ball</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Building Legacies Through <span>Education</span></h1>
+          <p>The Krewe of Grady Pough, Sr. is a nonprofit organization based in Mobile, Alabama, investing in deserving students through scholarships, service, and community support.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#scholarships">Scholarships</a>
+            <a class="btn btn-outline" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <img src="asset_folder/kogp-logo.png" alt="KOGP Crest Logo">
+          <h3>Our Mission</h3>
+          <p>To empower deserving students through educational scholarships, breaking down financial barriers and fostering the next generation of leaders.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="legacy-section" id="legacy">
+      <div class="container legacy-panel">
+        <div class="legacy-image-wrap">
+          <img class="legacy-image" src="asset_folder/grady-pough-sr-portrait.png" alt="Portrait of Grady Pough, Sr.">
+        </div>
+        <div class="legacy-copy">
+          <div class="legacy-flourish">✦</div>
+          <p class="legacy-eyebrow">Honoring the Legacy of</p>
+          <h2 class="legacy-name">Grady Pough, Sr.</h2>
+          <div class="legacy-divider"></div>
+          <h3>A Legacy Built on Education</h3>
+          <p>Born on July 16, 1920, in Waynesboro, Mississippi, Grady Pough, Sr. believed deeply in the power of knowledge and the importance of lifelong learning.</p>
+          <p>Despite receiving only a third-grade education, he understood that education could open doors and create opportunities for future generations. He remained committed to staying informed, reading the newspaper daily and encouraging those around him to seek wisdom and understanding.</p>
+          <p>Through his example, Grady instilled these values in his children, who have continued to pass down his passion for education to their own children and future generations.</p>
+          <p>Today, the Krewe of Grady Pough, Sr. proudly honors his memory by investing in deserving students through scholarships and community service, ensuring that his legacy of learning, family, and opportunity continues to inspire others.</p>
+          <div class="legacy-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">✦</div>
+          <h2 class="section-title">About KOGP</h2>
+          <div class="about-card">
+            <p>The Krewe of Grady Pough, Sr. (KOGP) is a nonprofit organization based in Mobile, Alabama. Our mission is to empower students through scholarships and community support, continuing the legacy of Grady Pough, Sr.</p>
+            <p>Driven by the generosity of donors, sponsors, and fundraising events, KOGP continues to invest in the next generation — creating opportunities that leave a lasting impact year after year.</p>
+          </div>
+        </div>
+        <div class="about-image" aria-label="KOGP visual placeholder">
+          <div>
+            <img src="asset_folder/kogp-logo.png" alt="KOGP Crest Logo">
+            <p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;color:#f0d08a;">Scholarship. Service. Legacy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="support-section" id="scholarships">
+      <div class="container">
+        <div class="section-label">✦</div>
+        <h2 class="section-title">Support the Cause</h2>
+        <div class="support-grid">
+          <div class="cta-box featured" id="ball">
+            <h3>Annual KOGP Mardi Gras Ball</h3>
+            <p>One of the Krewe’s premier events is the annual KOGP Mardi Gras Ball, held every Sunday evening before Fat Tuesday. More than a celebration, the Ball is a night of culture, fellowship, and purpose.</p>
+          </div>
+          <div class="cta-box">
+            <h3>Tickets</h3>
+            <p>Secure your spot for the annual Mardi Gras Ball.</p>
+            <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Buy Tickets</a>
+          </div>
+          <div class="cta-box">
+            <h3>Scholarships</h3>
+            <p>Access the application materials and apply today.</p>
+            <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">Apply Now</a>
+          </div>
+          <div class="cta-box">
+            <h3>Donations</h3>
+            <p>Your support helps fund scholarships for future leaders.</p>
+            <a class="btn btn-primary" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">Building Legacies Through Education<br>© 2026 Krewe of Grady Pough, Sr. | Mobile, Alabama<br>kogp.treasurer@gmail.com | 251-404-9189</div>
+  </footer>
+</body>
+</html>
