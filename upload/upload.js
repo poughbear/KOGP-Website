@@ -378,8 +378,8 @@
       },
       body: JSON.stringify({
         storage_path: item.storagePath,
-        uploader_name: uploaderName || null,
-        uploader_email: uploaderEmail || null,
+        uploader_name: uploaderName || "",
+        uploader_email: uploaderEmail || "",
         caption: "",
         category: "",
         status: "pending"
