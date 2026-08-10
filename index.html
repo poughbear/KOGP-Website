@@ -120,7 +120,11 @@
     .support-feature-copy{grid-area:copy;align-self:center;padding:clamp(30px,3.4vw,56px)}
     .support-kicker{margin:0 0 10px;color:#9b6e23;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
     .support-feature h3{margin:0 0 18px;color:var(--purple-dark);font-size:clamp(2.4rem,4.5vw,4.8rem);line-height:.98}
+    .support-feature h3.support-title-long{font-size:clamp(2.25rem,3.2vw,3.85rem);line-height:1.02}
+    .support-feature h3.support-title-medium{font-size:clamp(2.35rem,3.8vw,4.4rem);line-height:1}
     .support-feature-copy>p:not(.support-kicker){max-width:64ch;margin:0;color:#493f4b;font-family:Arial,Helvetica,sans-serif;font-size:1.06rem}
+    .support-feature-copy>p:not(.support-kicker)+p{margin-top:16px}
+    .support-tax-note{font-weight:800}
     .support-media{position:relative;grid-area:media;min-width:0;min-height:400px;margin:0;overflow:hidden;background:#160722}
     .support-media::before,.support-media::after{position:absolute;z-index:1;top:0;bottom:0;width:clamp(24px,3vw,54px);content:"";pointer-events:none}
     .support-media::before{left:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 18%,transparent 100%)}
@@ -141,7 +145,7 @@
     .support-feature-scholarships .support-icon{color:#fff;background:linear-gradient(145deg,#351044,#130719)}
     .support-feature-scholarships .support-action strong{color:var(--purple-dark)}
     .support-feature-scholarships .support-action p{color:#4e3a3f}
-    .support-feature-scholarships .support-action .btn{color:#fff;background:linear-gradient(145deg,#351044,#1b0923);box-shadow:0 14px 28px rgba(53,16,68,.22)}
+    .support-feature-scholarships .support-action .btn{padding-inline:16px;color:#fff;background:linear-gradient(145deg,#351044,#1b0923);box-shadow:0 14px 28px rgba(53,16,68,.22);font-size:.9rem;white-space:nowrap}
     .support-feature-donations{--media-blend-right:#1b0923}
     .support-feature-donations .support-action{background:radial-gradient(circle at 80% 12%,rgba(240,199,107,.22),transparent 30%),linear-gradient(145deg,#1f0a29,#050306)}
 
@@ -263,28 +267,30 @@
           <article class="support-feature support-feature-ball" id="ball">
             <div class="support-feature-copy">
               <p class="support-kicker">Annual celebration</p>
-              <h3>Ball Tickets</h3>
-              <p>The annual KOGP Mardi Gras Ball brings culture, fellowship, and purpose together every Sunday evening before Fat Tuesday. Join the Krewe for a celebration that helps strengthen our scholarship mission.</p>
+              <h3 class="support-title-long">16th Annual KOGP Mardi Gras Ball</h3>
+              <p>The 16th Annual KOGP Mardi Gras Ball brings the spirit of Carnival to life with an evening of culture, fellowship, tradition, and celebration. Each year on the Sunday before Fat Tuesday, the Krewe comes together to celebrate our community, create lasting memories, and support a greater purpose.</p>
+              <p>More than a night of Mardi Gras pageantry, the Ball helps strengthen the KOGP scholarship mission and our commitment to investing in the next generation. Come celebrate with the Krewe as we honor tradition, fellowship, and a legacy that reaches far beyond Carnival season.</p>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-ball.webp" alt="16th Annual KOGP Mardi Gras Ball: Sunday, February 7, 7:30 p.m. to 12:30 a.m. at Golden Flames Banquet Hall, 7060 Three Notch Road, Mobile; $60 tickets via Zeffy, light hors d'oeuvres, BYOB." loading="lazy" decoding="async">
             </figure>
-            <aside class="support-action" aria-label="Buy Mardi Gras Ball tickets">
+            <aside class="support-action" aria-label="Join the 16th Annual KOGP Mardi Gras Ball celebration">
               <span class="support-number" aria-hidden="true">01</span>
               <span class="support-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M3 8.5V6h18v2.5a3 3 0 0 0 0 6V17H3v-2.5a3 3 0 0 0 0-6Z"/><path d="M8 6v11"/></svg>
               </span>
               <strong>Reserve your place</strong>
               <p>Secure tickets for the annual KOGP Mardi Gras Ball.</p>
-              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Buy Ball Tickets</a>
+              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Join the Celebration</a>
             </aside>
           </article>
 
           <article class="support-feature support-feature-scholarships" id="scholarships">
             <div class="support-feature-copy">
               <p class="support-kicker">Investing in potential</p>
-              <h3>Scholarships</h3>
-              <p>KOGP scholarships help deserving students move toward their educational goals. Review the current application materials, requirements, and supporting documents in one place.</p>
+              <h3 class="support-title-medium">KOGP Scholarship</h3>
+              <p>The KOGP Scholarship Program reflects our commitment to investing in the next generation. Each year, KOGP supports deserving students as they pursue their educational goals and take the next step toward their future.</p>
+              <p>Applicants can review eligibility requirements, deadlines, required documents, and application instructions below, then complete the current KOGP Scholarship Application.</p>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-scholarship.webp" alt="Graduation cap and diploma representing the KOGP scholarship program." loading="lazy" decoding="async">
@@ -296,7 +302,7 @@
               </span>
               <strong>Take the next step</strong>
               <p>Open the scholarship folder to review and download the application materials.</p>
-              <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">View Applications</a>
+              <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">Scholarship Applications</a>
             </aside>
           </article>
 
@@ -304,7 +310,9 @@
             <div class="support-feature-copy">
               <p class="support-kicker">Fuel the mission</p>
               <h3>Donations</h3>
-              <p>Your support helps KOGP continue funding scholarships and creating opportunities for future leaders. A contribution of any size strengthens the work behind every award.</p>
+              <p>Your support helps KOGP continue investing in students, expanding opportunities, and strengthening our community. Every contribution&mdash;large or small&mdash;helps fund scholarships and carry our mission forward.</p>
+              <p>Give in the way that works best for you with a one-time, monthly, or annual contribution. Every gift helps build a lasting legacy of education, opportunity, and service.</p>
+              <p class="support-tax-note">All donations are tax-deductible.</p>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-donations.webp" alt="A donor placing a gift into a scholarship fund box." loading="lazy" decoding="async">
@@ -316,7 +324,7 @@
               </span>
               <strong>Every gift matters</strong>
               <p>Give securely through the KOGP scholarship fund donation page.</p>
-              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate Now</a>
+              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Support the Mission</a>
             </aside>
           </article>
         </div>
