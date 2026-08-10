@@ -6,6 +6,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.0"
+    "@supabase/supabase-js": "^2.105.0",
+    "heic-to": "1.5.2"
   }
 }
