@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16051f">
+  <meta name="description" content="See approved photos from Krewe of Grady Pough, Sr. celebrations and community events.">
+  <title>Photo Gallery | KOGP</title>
+  <link rel="stylesheet" href="/gallery/gallery.css">
+</head>
+<body>
+  <a class="skip-link" href="#gallery-grid">Skip to photos</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="KOGP home">
+        <img src="/asset_folder/kogp-logo.png" alt="" width="92" height="92">
+        <span class="brand-copy">
+          <strong>Krewe of Grady Pough, Sr.</strong>
+          <small>KOGP</small>
+        </span>
+      </a>
+      <nav class="header-actions" aria-label="Gallery navigation">
+        <a class="header-link" href="/">Home</a>
+        <a class="header-link header-link-gold" href="/upload/">Share photos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-inner">
+        <div class="intro-copy">
+          <p class="eyebrow"><span aria-hidden="true">✦</span> Moments worth celebrating</p>
+          <h1 id="page-title">The KOGP <span>Photo Gallery</span></h1>
+          <p class="lede">A look back at the fellowship, purpose, and celebration that bring our community together.</p>
+        </div>
+        <div class="crest-wrap" aria-hidden="true">
+          <div class="crest-halo"></div>
+          <img src="/asset_folder/kogp-logo.png" alt="" width="330" height="330">
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" aria-labelledby="gallery-heading">
+      <div class="gallery-shell">
+        <div class="gallery-heading-row">
+          <div>
+            <p class="section-label">KOGP memories</p>
+            <h2 id="gallery-heading">Celebration in every frame</h2>
+          </div>
+          <a class="share-button" href="/upload/">Share your photos</a>
+        </div>
+
+        <div class="gallery-status" id="gallery-status" role="status" aria-live="polite">
+          <span class="status-spinner" aria-hidden="true"></span>
+          <span>Gathering the latest photos…</span>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid" aria-busy="true"></div>
+
+        <section class="empty-state" id="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h3l1.4-2h7.2L17 7h3v12H4zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+          </div>
+          <p class="section-label">More memories soon</p>
+          <h2>The gallery is getting ready.</h2>
+          <p>Approved KOGP photos will appear here. Have a favorite moment to share?</p>
+          <a class="share-button" href="/upload/">Upload a photo</a>
+        </section>
+
+        <section class="error-state" id="error-state" hidden>
+          <p class="section-label">Please try again</p>
+          <h2>We couldn’t load the gallery.</h2>
+          <p>The photos are still safe. Check your connection and try once more.</p>
+          <button class="share-button" id="retry-button" type="button">Try again</button>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="photo-viewer" id="photo-viewer" aria-labelledby="viewer-caption">
+    <div class="viewer-surface">
+      <button class="viewer-close" id="viewer-close" type="button" aria-label="Close photo viewer">×</button>
+      <button class="viewer-nav viewer-previous" id="viewer-previous" type="button" aria-label="Previous photo">‹</button>
+      <figure>
+        <img id="viewer-image" alt="">
+        <figcaption id="viewer-caption"></figcaption>
+      </figure>
+      <button class="viewer-nav viewer-next" id="viewer-next" type="button" aria-label="Next photo">›</button>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <img src="/asset_folder/kogp-logo.png" alt="" width="54" height="54">
+    <p>Building Legacies Through Education</p>
+    <small>© 2026 Krewe of Grady Pough, Sr. · Mobile, Alabama</small>
+  </footer>
+
+  <script src="/gallery/gallery.js" defer></script>
+</body>
+</html>
