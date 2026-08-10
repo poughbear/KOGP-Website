@@ -111,9 +111,10 @@
     .section-title{font-size:clamp(2.3rem,4vw,4.2rem);line-height:1.05;margin:0 0 22px;color:var(--purple-dark)}
 
     .support-section{background:linear-gradient(180deg,#fff 0%,#f7efe2 100%);padding:76px 0 82px;scroll-margin-top:120px}
-    .support-heading{display:grid;grid-template-columns:.8fr 1.2fr;align-items:end;gap:42px;margin-bottom:34px}
-    .support-heading .section-title{margin-bottom:0}
-    .support-intro{max-width:70ch;margin:0;color:#514654;font-family:Arial,Helvetica,sans-serif;font-size:1.08rem}
+    .support-heading{display:block;margin-bottom:44px;text-align:center}
+    .support-heading .section-label{justify-content:center}
+    .support-heading .section-label::before,.support-heading .section-label::after{width:clamp(54px,7vw,110px)}
+    .support-heading .section-title{margin:0 auto;font-size:clamp(3rem,5.4vw,6rem);line-height:.95}
     .support-stack{display:grid;gap:28px}
     .support-feature{--media-blend-right:#281032;display:grid;grid-template-areas:"copy media action";grid-template-columns:minmax(360px,1.05fr) minmax(360px,1.12fr) minmax(250px,.42fr);min-height:400px;overflow:hidden;background:#fff;border:1px solid rgba(217,177,95,.28);border-radius:28px;box-shadow:0 20px 48px rgba(22,5,31,.11);scroll-margin-top:120px}
     .support-feature-copy{grid-area:copy;align-self:center;padding:clamp(30px,3.4vw,56px)}
@@ -156,10 +157,10 @@
       .support-section,.support-feature{scroll-margin-top:220px}
     }
     @media (max-width:1100px){
-      .hero-grid,.legacy-panel{grid-template-columns:1fr}.hero-card{margin-right:0;justify-self:center}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-heading{grid-template-columns:1fr;gap:12px}.support-feature{grid-template-areas:"media" "copy" "action";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7}.support-media::before{top:auto;right:0;bottom:0;width:auto;height:clamp(28px,6vw,58px);background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.76) 20%,transparent 100%)}.support-media::after{display:none}.support-action{min-height:280px}
+      .hero-grid,.legacy-panel{grid-template-columns:1fr}.hero-card{margin-right:0;justify-self:center}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-feature{grid-template-areas:"media" "copy" "action";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7}.support-media::before{top:auto;right:0;bottom:0;width:auto;height:clamp(28px,6vw,58px);background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.76) 20%,transparent 100%)}.support-media::after{display:none}.support-action{min-height:280px}
     }
     @media (max-width:720px){
-      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{max-width:410px;padding:19px 18px}.hero-card img{width:165px}.hero-card .mission-values{font-size:.7rem;letter-spacing:.07em}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.support-section{padding:48px 0}.support-heading{margin-bottom:24px}.support-intro{font-size:1rem}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.support-action{min-height:260px;padding:26px 22px}.support-number{top:18px;left:20px;font-size:4rem}.section-label::before{width:70px}.section-title{font-size:2.3rem}
+      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{max-width:410px;padding:19px 18px}.hero-card img{width:165px}.hero-card .mission-values{font-size:.7rem;letter-spacing:.07em}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.support-section{padding:48px 0}.support-heading{margin-bottom:30px}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.support-action{min-height:260px;padding:26px 22px}.support-number{top:18px;left:20px;font-size:4rem}.section-label::before{width:70px}.section-title{font-size:2.3rem}
     }
   </style>
 </head>
@@ -239,11 +240,8 @@
     <section class="support-section" id="support">
       <div class="container">
         <div class="support-heading">
-          <div>
-            <div class="section-label">✦</div>
-            <h2 class="section-title">Support the Cause</h2>
-          </div>
-          <p class="support-intro">Celebrate with us, pursue an educational opportunity, or help fund the next scholarship. Each path plays a meaningful role in carrying the KOGP legacy forward.</p>
+          <div class="section-label">✦</div>
+          <h2 class="section-title">Support the Cause</h2>
         </div>
 
         <div class="support-stack">
