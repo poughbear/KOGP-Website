@@ -71,10 +71,10 @@
     .hero h1 span{color:var(--gold-bright)}
     .hero p{font-family:Arial, Helvetica, sans-serif;font-size:clamp(1.05rem,1.4vw,1.35rem);max-width:62ch;color:rgba(255,255,255,.9);margin:0 0 28px}
     .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
-    .hero-card{background:rgba(0,0,0,.22);border:1px solid rgba(217,177,95,.35);border-radius:var(--radius);padding:32px;text-align:center;box-shadow:var(--shadow)}
+    .hero-card{display:grid;justify-items:center;background:rgba(0,0,0,.22);border:1px solid rgba(217,177,95,.35);border-radius:var(--radius);padding:32px;text-align:center;box-shadow:var(--shadow)}
     .hero-card img{width:270px;display:block;margin:0 auto 18px;filter:drop-shadow(0 14px 24px rgba(0,0,0,.4))}
-    .hero-card h3{font-size:1.6rem;margin:0 0 12px;color:var(--gold-bright)}
-    .hero-card p{font-size:1rem;margin:0;color:rgba(255,255,255,.86)}
+    .hero-card h3{font-size:clamp(1.85rem,2.4vw,2.4rem);line-height:1.15;margin:0 0 14px;color:var(--gold-bright)}
+    .hero-card p{max-width:44ch;margin:0 auto;color:rgba(255,255,255,.9);font-size:clamp(1.1rem,1.3vw,1.28rem);line-height:1.65;text-align:center}
 
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;font-family:Arial, Helvetica, sans-serif;font-weight:800;letter-spacing:.02em;min-width:170px;transition:all .2s ease}
     .btn:hover{transform:translateY(-2px)}
@@ -116,15 +116,15 @@
     .support-heading .section-title{margin-bottom:0}
     .support-intro{max-width:70ch;margin:0;color:#514654;font-family:Arial,Helvetica,sans-serif;font-size:1.08rem}
     .support-stack{display:grid;gap:28px}
-    .support-feature{display:grid;grid-template-areas:"copy media action";grid-template-columns:minmax(330px,1.1fr) minmax(320px,.9fr) minmax(280px,.55fr);min-height:400px;overflow:hidden;background:#fff;border:1px solid rgba(217,177,95,.28);border-radius:28px;box-shadow:0 20px 48px rgba(22,5,31,.11);scroll-margin-top:120px}
+    .support-feature{--media-blend-right:#281032;display:grid;grid-template-areas:"copy media action";grid-template-columns:minmax(330px,1.1fr) minmax(320px,.9fr) minmax(280px,.55fr);min-height:400px;overflow:hidden;background:#fff;border:1px solid rgba(217,177,95,.28);border-radius:28px;box-shadow:0 20px 48px rgba(22,5,31,.11);scroll-margin-top:120px}
     .support-feature-copy{grid-area:copy;align-self:center;padding:clamp(30px,3.4vw,56px)}
     .support-kicker{margin:0 0 10px;color:#9b6e23;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
     .support-feature h3{margin:0 0 18px;color:var(--purple-dark);font-size:clamp(2.4rem,4.5vw,4.8rem);line-height:.98}
     .support-feature-copy>p:not(.support-kicker){max-width:64ch;margin:0;color:#493f4b;font-family:Arial,Helvetica,sans-serif;font-size:1.06rem}
-    .support-points{display:flex;flex-wrap:wrap;margin:24px 0 0;padding:0;gap:10px;list-style:none}
-    .support-points li{padding:8px 13px;color:var(--purple-dark);background:#f7f0f8;border:1px solid #eaddec;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:800}
-    .support-media{position:relative;grid-area:media;min-width:0;min-height:400px;margin:0;overflow:hidden;background:#160722;border-left:1px solid rgba(217,177,95,.18);border-right:1px solid rgba(217,177,95,.18)}
-    .support-media::after{position:absolute;inset:0;content:"";pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+    .support-media{position:relative;grid-area:media;min-width:0;min-height:400px;margin:0;overflow:hidden;background:#160722}
+    .support-media::before,.support-media::after{position:absolute;z-index:1;top:0;bottom:0;width:clamp(24px,3vw,54px);content:"";pointer-events:none}
+    .support-media::before{left:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 18%,transparent 100%)}
+    .support-media::after{right:0;background:linear-gradient(270deg,var(--media-blend-right) 0%,transparent 100%)}
     .support-media img{display:block;width:100%;height:100%;object-fit:cover}
     .support-feature-ball .support-media img{object-fit:contain}
     .support-action{position:relative;display:flex;grid-area:action;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:400px;padding:34px;overflow:hidden;color:#fff;background:radial-gradient(circle at 82% 18%,rgba(217,177,95,.25),transparent 28%),linear-gradient(145deg,#351044,#130719)}
@@ -135,12 +135,14 @@
     .support-action strong{position:relative;margin-bottom:8px;color:var(--gold-bright);font-size:1.55rem;line-height:1.08}
     .support-action p{position:relative;margin:0 0 22px;color:rgba(255,255,255,.84);font-family:Arial,Helvetica,sans-serif;font-size:.92rem}
     .support-action .btn{position:relative;align-self:flex-start}
+    .support-feature-scholarships{--media-blend-right:#edc968}
     .support-feature-scholarships .support-action{color:var(--purple-dark);background:radial-gradient(circle at 82% 18%,rgba(74,22,93,.13),transparent 30%),linear-gradient(145deg,#f8d985,#d6a84e)}
     .support-feature-scholarships .support-number{color:rgba(53,16,68,.12)}
     .support-feature-scholarships .support-icon{color:#fff;background:linear-gradient(145deg,#351044,#130719)}
     .support-feature-scholarships .support-action strong{color:var(--purple-dark)}
     .support-feature-scholarships .support-action p{color:#4e3a3f}
     .support-feature-scholarships .support-action .btn{color:#fff;background:linear-gradient(145deg,#351044,#1b0923);box-shadow:0 14px 28px rgba(53,16,68,.22)}
+    .support-feature-donations{--media-blend-right:#1b0923}
     .support-feature-donations .support-action{background:radial-gradient(circle at 80% 12%,rgba(240,199,107,.22),transparent 30%),linear-gradient(145deg,#1f0a29,#050306)}
 
     .footer{background:#080608;color:rgba(255,255,255,.76);text-align:center;padding:34px 0;font-family:Arial, Helvetica, sans-serif;border-top:1px solid rgba(217,177,95,.35)}
@@ -150,10 +152,10 @@
       .support-section,.support-feature{scroll-margin-top:220px}
     }
     @media (max-width:1100px){
-      .hero-grid,.legacy-panel,.about-grid{grid-template-columns:1fr}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-heading{grid-template-columns:1fr;gap:12px}.support-feature{grid-template-areas:"media" "copy" "action";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7;border-right:0;border-bottom:1px solid rgba(217,177,95,.18);border-left:0}.support-action{min-height:280px}
+      .hero-grid,.legacy-panel,.about-grid{grid-template-columns:1fr}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-heading{grid-template-columns:1fr;gap:12px}.support-feature{grid-template-areas:"media" "copy" "action";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7}.support-media::before{top:auto;right:0;bottom:0;width:auto;height:clamp(28px,6vw,58px);background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.76) 20%,transparent 100%)}.support-media::after{display:none}.support-action{min-height:280px}
     }
     @media (max-width:720px){
-      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{padding:24px}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.about-card{padding:22px}.support-section{padding:48px 0}.support-heading{margin-bottom:24px}.support-intro{font-size:1rem}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.support-action{min-height:260px;padding:26px 22px}.support-number{top:18px;left:20px;font-size:4rem}.support-points{margin-top:20px}.section-label::before{width:70px}.section-title{font-size:2.3rem}
+      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{padding:24px}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.about-card{padding:22px}.support-section{padding:48px 0}.support-heading{margin-bottom:24px}.support-intro{font-size:1rem}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.support-action{min-height:260px;padding:26px 22px}.support-number{top:18px;left:20px;font-size:4rem}.section-label::before{width:70px}.section-title{font-size:2.3rem}
     }
   </style>
 </head>
@@ -263,11 +265,6 @@
               <p class="support-kicker">Annual celebration</p>
               <h3>Ball Tickets</h3>
               <p>The annual KOGP Mardi Gras Ball brings culture, fellowship, and purpose together every Sunday evening before Fat Tuesday. Join the Krewe for a celebration that helps strengthen our scholarship mission.</p>
-              <ul class="support-points" aria-label="Ball highlights">
-                <li>Sunday before Fat Tuesday</li>
-                <li>Culture and fellowship</li>
-                <li>Celebration with purpose</li>
-              </ul>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-ball.webp" alt="16th Annual KOGP Mardi Gras Ball: Sunday, February 7, 7:30 p.m. to 12:30 a.m. at Golden Flames Banquet Hall, 7060 Three Notch Road, Mobile; $60 tickets via Zeffy, light hors d'oeuvres, BYOB." loading="lazy" decoding="async">
@@ -288,11 +285,6 @@
               <p class="support-kicker">Investing in potential</p>
               <h3>Scholarships</h3>
               <p>KOGP scholarships help deserving students move toward their educational goals. Review the current application materials, requirements, and supporting documents in one place.</p>
-              <ul class="support-points" aria-label="Scholarship highlights">
-                <li>Application materials</li>
-                <li>Educational opportunity</li>
-                <li>Building future leaders</li>
-              </ul>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-scholarship.webp" alt="Graduation cap and diploma representing the KOGP scholarship program." loading="lazy" decoding="async">
@@ -313,11 +305,6 @@
               <p class="support-kicker">Fuel the mission</p>
               <h3>Donations</h3>
               <p>Your support helps KOGP continue funding scholarships and creating opportunities for future leaders. A contribution of any size strengthens the work behind every award.</p>
-              <ul class="support-points" aria-label="Donation impact">
-                <li>Support scholarships</li>
-                <li>Create opportunity</li>
-                <li>Continue the legacy</li>
-              </ul>
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-donations.webp" alt="A donor placing a gift into a scholarship fund box." loading="lazy" decoding="async">
