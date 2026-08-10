@@ -120,32 +120,38 @@ a { color: inherit; }
 .intro {
   position: relative;
   overflow: hidden;
-  padding: 54px 0 84px;
+  height: 430px;
   color: var(--white);
-  background:
-    radial-gradient(circle at 14% 16%, rgba(217, 177, 95, .22), transparent 30%),
-    radial-gradient(circle at 92% 50%, rgba(100, 34, 126, .34), transparent 34%),
-    linear-gradient(135deg, #120714 0%, var(--purple) 58%, #0a050d 100%);
+  background: #120714;
   border-bottom: 1px solid rgba(217, 177, 95, .38);
 }
 
-.intro::after {
+.intro::before {
   position: absolute;
-  right: -90px;
-  bottom: -150px;
-  width: 360px;
-  height: 360px;
+  z-index: 1;
+  inset: 0;
   content: "";
-  border: 1px solid rgba(240, 199, 107, .13);
-  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(9, 3, 12, .08) 20%, rgba(9, 3, 12, .88) 100%);
+  pointer-events: none;
+}
+
+.intro-artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 66% center;
 }
 
 .intro-inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
   width: calc(100% - var(--page-inset));
   margin: 0 auto;
+  padding-bottom: 68px;
 }
 
 .eyebrow,
@@ -179,8 +185,6 @@ a { color: inherit; }
   font-family: var(--sans);
   font-size: 1rem;
 }
-
-.crest-wrap { display: none; }
 
 .gallery-section {
   position: relative;
@@ -463,11 +467,10 @@ a { color: inherit; }
   .header-inner { min-height: 88px; }
   .brand img { width: 70px; height: 70px; }
   .brand-copy strong { font-size: .88rem; }
-  .intro { padding: 74px 0 104px; }
-  .intro-inner { grid-template-columns: 1fr .55fr; align-items: center; gap: 36px; }
-  .crest-wrap { position: relative; display: grid; min-height: 250px; place-items: center; }
-  .crest-wrap img { position: relative; z-index: 1; width: 250px; height: auto; filter: drop-shadow(0 20px 34px rgba(0, 0, 0, .45)); }
-  .crest-halo { position: absolute; width: 290px; height: 290px; border: 1px solid rgba(240, 199, 107, .25); border-radius: 50%; }
+  .intro { height: auto; }
+  .intro::before { display: none; }
+  .intro-artwork { height: auto; object-fit: contain; object-position: center; }
+  .intro-inner { width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .gallery-shell { margin-top: -48px; padding: 38px 34px 44px; }
   .gallery-heading-row { flex-direction: row; align-items: flex-end; justify-content: space-between; }
   .gallery-grid { gap: 20px; }
