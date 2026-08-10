@@ -1,0 +1,11 @@
+{
+  "name": "kogp-website",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.0"
+  }
+}
