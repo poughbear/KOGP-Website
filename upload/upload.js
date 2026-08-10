@@ -7,6 +7,8 @@
   const CONFIG_ENDPOINT = "/.netlify/functions/supabase-config";
   const STORAGE_BUCKET = "gallery";
   const DATABASE_TABLE = "gallery_uploads";
+  const HEIC_CONVERTER_URL = "/upload/vendor/heic-to.js";
+  const HEIC_JPEG_QUALITIES = Object.freeze([.9, .78, .65]);
 
   const MIME_TO_EXTENSION = Object.freeze({
     "image/jpeg": "jpg",
@@ -53,6 +55,8 @@
   let files = [];
   let isUploading = false;
   let cachedConfig = null;
+  let heicConverterPromise = null;
+  let heicConversionQueue = Promise.resolve();
 
   elements.input.addEventListener("change", (event) => {
     addFiles(event.target.files);
@@ -138,13 +142,18 @@
       files.push({
         id: createUuid(),
         file,
+        originalName: file.name,
         extension,
         previewUrl: URL.createObjectURL(file),
+        uploadBlob: file,
+        wasConverted: false,
         storagePath: null,
         state: "ready",
         progress: 0,
         status: "Ready",
         element: null,
+        previewElement: null,
+        sizeElement: null,
         statusElement: null,
         removeButton: null
       });
@@ -178,20 +187,17 @@
       fallback.textContent = item.extension.toUpperCase();
       preview.append(fallback);
 
-      const image = document.createElement("img");
-      image.src = item.previewUrl;
-      image.alt = "";
-      image.addEventListener("load", () => fallback.remove(), { once: true });
-      image.addEventListener("error", () => image.remove(), { once: true });
-      preview.prepend(image);
+      if (!isHeicExtension(item.extension) || item.wasConverted) {
+        addPreviewImage(item, preview, fallback);
+      }
 
       const details = document.createElement("div");
       details.className = "file-details";
 
       const name = document.createElement("p");
       name.className = "file-name";
-      name.textContent = item.file.name;
-      name.title = item.file.name;
+      name.textContent = item.originalName;
+      name.title = item.originalName;
 
       const meta = document.createElement("p");
       meta.className = "file-meta";
@@ -222,6 +228,8 @@
       elements.fileList.append(row);
 
       item.element = row;
+      item.previewElement = preview;
+      item.sizeElement = size;
       item.statusElement = status;
       item.removeButton = remove;
     });
@@ -299,15 +307,25 @@
   }
 
   async function uploadFile(item, uploaderName, uploaderEmail, config) {
+    try {
+      await prepareFileForUpload(item);
+    } catch (error) {
+      console.error(`Preparation failed for ${item.originalName}:`, error.message);
+      item.progress = 100;
+      setItemState(item, "error", error.userStatus || "HEIC conversion failed");
+      updateOverallProgress();
+      return;
+    }
+
     item.storagePath = createStoragePath(item.extension);
-    item.progress = 1;
+    item.progress = Math.max(item.progress, 1);
     setItemState(item, "uploading", "Starting upload…");
     updateOverallProgress();
 
     try {
       await uploadObject(item, config);
     } catch (error) {
-      console.error(`Upload failed for ${item.file.name}:`, error.message);
+      console.error(`Upload failed for ${item.originalName}:`, error.message);
       item.progress = 100;
       setItemState(item, "error", "Upload failed");
       updateOverallProgress();
@@ -321,7 +339,7 @@
     try {
       await createDatabaseRecord(item, uploaderName, uploaderEmail, config);
     } catch (error) {
-      console.error(`Submission record failed for ${item.file.name}:`, error.message);
+      console.error(`Submission record failed for ${item.originalName}:`, error.message);
       item.progress = 100;
       setItemState(item, "error", "Photo uploaded, but record failed");
       updateOverallProgress();
@@ -331,6 +349,112 @@
     item.progress = 100;
     setItemState(item, "success", "Submitted for review");
     updateOverallProgress();
+  }
+
+  async function prepareFileForUpload(item) {
+    if (!isHeicExtension(item.extension)) return;
+
+    item.progress = 2;
+    setItemState(item, "converting", "Preparing HEIC for the gallery…");
+    updateOverallProgress();
+
+    const converted = await queueHeicConversion(async () => {
+      const { heicTo, isHeic } = await loadHeicConverter();
+
+      if (!(await isHeic(item.file))) {
+        throw createPreparationError("Not a valid HEIC photo");
+      }
+
+      let jpeg = null;
+
+      for (const quality of HEIC_JPEG_QUALITIES) {
+        const result = await heicTo({
+          blob: item.file,
+          type: "image/jpeg",
+          quality
+        });
+
+        jpeg = Array.isArray(result) ? result[0] : result;
+
+        if (!(jpeg instanceof Blob)) {
+          throw createPreparationError("HEIC conversion failed");
+        }
+
+        if (jpeg.size <= MAX_FILE_BYTES) break;
+      }
+
+      if (!jpeg || jpeg.size === 0) {
+        throw createPreparationError("HEIC conversion failed");
+      }
+
+      if (jpeg.size > MAX_FILE_BYTES) {
+        throw createPreparationError("Converted photo exceeds 10 MB");
+      }
+
+      return jpeg;
+    });
+
+    URL.revokeObjectURL(item.previewUrl);
+    item.previewUrl = URL.createObjectURL(converted);
+    item.uploadBlob = converted;
+    item.extension = "jpg";
+    item.wasConverted = true;
+    item.progress = 8;
+
+    if (item.previewElement) {
+      const fallback = item.previewElement.querySelector("span");
+      if (fallback) fallback.textContent = "JPG";
+      addPreviewImage(item, item.previewElement, fallback);
+    }
+
+    if (item.sizeElement) {
+      item.sizeElement.textContent = `${formatBytes(converted.size)} after conversion`;
+    }
+
+    setItemState(item, "converting", "Converted to JPEG");
+    updateOverallProgress();
+  }
+
+  function queueHeicConversion(task) {
+    const queued = heicConversionQueue.then(task, task);
+    heicConversionQueue = queued.catch(() => undefined);
+    return queued;
+  }
+
+  async function loadHeicConverter() {
+    if (!heicConverterPromise) {
+      heicConverterPromise = import(HEIC_CONVERTER_URL)
+        .then((module) => {
+          if (typeof module.heicTo !== "function" || typeof module.isHeic !== "function") {
+            throw new Error("The HEIC converter did not load correctly");
+          }
+          return module;
+        })
+        .catch((error) => {
+          heicConverterPromise = null;
+          throw error;
+        });
+    }
+
+    return heicConverterPromise;
+  }
+
+  function createPreparationError(userStatus) {
+    const error = new Error(userStatus);
+    error.userStatus = userStatus;
+    return error;
+  }
+
+  function addPreviewImage(item, preview, fallback) {
+    const existingImage = preview.querySelector("img");
+    if (existingImage) existingImage.remove();
+
+    const image = document.createElement("img");
+    image.src = item.previewUrl;
+    image.alt = "";
+    image.addEventListener("load", () => fallback?.remove(), { once: true });
+    image.addEventListener("error", () => image.remove(), { once: true });
+    preview.prepend(image);
   }
 
   function uploadObject(item, config) {
@@ -364,7 +488,7 @@
       request.addEventListener("error", () => reject(new Error("Network error while uploading")));
       request.addEventListener("timeout", () => reject(new Error("Upload timed out")));
       request.timeout = 300000;
-      request.send(item.file);
+      request.send(item.uploadBlob);
     });
   }
 
@@ -522,6 +646,10 @@
 
     if (!EXTENSION_TO_MIME[extension]) return null;
     return extension === "jpeg" ? "jpg" : extension;
+  }
+
+  function isHeicExtension(extension) {
+    return extension === "heic" || extension === "heif";
   }
 
   function createStoragePath(extension) {
