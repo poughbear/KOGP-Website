@@ -69,13 +69,15 @@
       padding:64px 0;
       border-bottom:1px solid rgba(217,177,95,.35);
     }
-    .hero-grid{display:grid;grid-template-columns:1.24fr .76fr;gap:36px;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,13fr) minmax(0,7fr);gap:clamp(36px,4vw,72px);align-items:center}
+    .hero-copy{width:100%;max-width:none;justify-self:center}
     .hero h1{font-size:clamp(2.8rem,5vw,5.8rem);line-height:1.02;margin:0 0 18px;color:#fff;text-shadow:0 8px 28px rgba(0,0,0,.5)}
     .hero h1 span{color:var(--gold-bright)}
-    .hero p{font-family:Arial, Helvetica, sans-serif;font-size:clamp(1.05rem,1.4vw,1.35rem);max-width:62ch;color:rgba(255,255,255,.9);margin:0 0 28px}
+    .hero p{font-family:Arial, Helvetica, sans-serif;font-size:clamp(1.05rem,1.4vw,1.35rem);max-width:none;color:rgba(255,255,255,.9);margin:0 0 28px}
     .hero-copy p+p{margin-top:-12px}
     .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
-    .hero-card{display:grid;width:100%;max-width:440px;margin-right:clamp(64px,7vw,128px);justify-self:end;justify-items:center;background:rgba(0,0,0,.22);border:1px solid rgba(217,177,95,.35);border-radius:20px;padding:22px 24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.2)}
+    .hero-actions .btn{flex:1 1 240px;max-width:270px;white-space:nowrap}
+    .hero-card{display:grid;width:100%;max-width:540px;justify-self:center;justify-items:center;background:rgba(0,0,0,.22);border:1px solid rgba(217,177,95,.35);border-radius:20px;padding:26px 30px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.2)}
     .hero-card img{width:190px;display:block;margin:0 auto 10px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.4))}
     .hero-card h3{font-size:clamp(1.65rem,2vw,2.05rem);line-height:1.15;margin:0 0 9px;color:var(--gold-bright)}
     .hero-card p{max-width:38ch;margin:0 auto;color:rgba(255,255,255,.9);font-size:clamp(.98rem,1.05vw,1.08rem);line-height:1.5;text-align:center}
@@ -116,7 +118,7 @@
     .support-heading .section-label::before,.support-heading .section-label::after{width:clamp(54px,7vw,110px)}
     .support-heading .section-title{margin:0 auto;font-size:clamp(3rem,5.4vw,6rem);line-height:.95}
     .support-stack{display:grid;gap:28px}
-    .support-feature{--media-blend-right:#281032;display:grid;grid-template-areas:"copy media action";grid-template-columns:minmax(360px,1.05fr) minmax(360px,1.12fr) minmax(250px,.42fr);min-height:400px;overflow:hidden;background:#fff;border:1px solid rgba(217,177,95,.28);border-radius:28px;box-shadow:0 20px 48px rgba(22,5,31,.11);scroll-margin-top:120px}
+    .support-feature{display:grid;grid-template-areas:"copy media";grid-template-columns:minmax(360px,.92fr) minmax(520px,1.3fr);min-height:400px;overflow:hidden;background:#fff;border:1px solid rgba(217,177,95,.28);border-radius:28px;box-shadow:0 20px 48px rgba(22,5,31,.11);scroll-margin-top:120px}
     .support-feature-copy{grid-area:copy;align-self:center;padding:clamp(30px,3.4vw,56px)}
     .support-kicker{margin:0 0 10px;color:#9b6e23;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
     .support-feature h3{margin:0 0 18px;color:var(--purple-dark);font-size:clamp(2.4rem,4.5vw,4.8rem);line-height:.98}
@@ -126,41 +128,23 @@
     .support-feature-copy>p:not(.support-kicker)+p{margin-top:16px}
     .support-tax-note{font-weight:800}
     .support-media{position:relative;grid-area:media;min-width:0;min-height:400px;margin:0;overflow:hidden;background:#160722}
-    .support-media::before,.support-media::after{position:absolute;z-index:1;top:0;bottom:0;width:clamp(24px,3vw,54px);content:"";pointer-events:none}
-    .support-media::before{left:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 18%,transparent 100%)}
-    .support-media::after{right:0;background:linear-gradient(270deg,var(--media-blend-right) 0%,transparent 100%)}
+    .support-media::before{position:absolute;z-index:1;top:0;bottom:0;left:0;width:clamp(24px,3vw,54px);content:"";background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 18%,transparent 100%);pointer-events:none}
+    .support-media::after{position:absolute;z-index:1;right:0;bottom:0;left:0;height:120px;content:"";background:linear-gradient(0deg,rgba(12,4,16,.76) 0%,rgba(12,4,16,.32) 52%,transparent 100%);pointer-events:none}
     .support-media img{display:block;width:100%;height:100%;object-fit:cover}
     .support-feature-ball .support-media img{object-fit:contain}
-    .support-action{position:relative;display:flex;grid-area:action;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:400px;padding:28px;overflow:hidden;color:#fff;background:radial-gradient(circle at 82% 18%,rgba(217,177,95,.25),transparent 28%),linear-gradient(145deg,#351044,#130719)}
-    .support-action::before{position:absolute;top:-86px;right:-74px;width:240px;height:240px;content:"";border:1px solid rgba(240,199,107,.18);border-radius:50%;box-shadow:0 0 0 34px rgba(240,199,107,.035)}
-    .support-number{position:absolute;top:22px;left:28px;color:rgba(255,255,255,.13);font-family:Georgia,'Times New Roman',serif;font-size:5rem;font-weight:800;line-height:1}
-    .support-icon{position:relative;display:grid;width:66px;height:66px;margin-bottom:22px;color:var(--purple-dark);background:linear-gradient(180deg,#f5cd72,#c7953d);border-radius:50%;box-shadow:0 12px 26px rgba(0,0,0,.18);place-items:center}
-    .support-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .support-action strong{position:relative;margin-bottom:8px;color:var(--gold-bright);font-size:1.55rem;line-height:1.08}
-    .support-action p{position:relative;margin:0 0 22px;color:rgba(255,255,255,.84);font-family:Arial,Helvetica,sans-serif;font-size:.92rem}
-    .support-action .btn{position:relative;align-self:flex-start}
-    .support-feature-scholarships{--media-blend-right:#edc968}
-    .support-feature-scholarships .support-action{color:var(--purple-dark);background:radial-gradient(circle at 82% 18%,rgba(74,22,93,.13),transparent 30%),linear-gradient(145deg,#f8d985,#d6a84e)}
-    .support-feature-scholarships .support-number{color:rgba(53,16,68,.12)}
-    .support-feature-scholarships .support-icon{color:#fff;background:linear-gradient(145deg,#351044,#130719)}
-    .support-feature-scholarships .support-action strong{color:var(--purple-dark)}
-    .support-feature-scholarships .support-action p{color:#4e3a3f}
-    .support-feature-scholarships .support-action .btn{padding-inline:16px;color:#fff;background:linear-gradient(145deg,#351044,#1b0923);box-shadow:0 14px 28px rgba(53,16,68,.22);font-size:.9rem;white-space:nowrap}
-    .support-feature-donations{--media-blend-right:#1b0923}
-    .support-feature-donations .support-action{background:radial-gradient(circle at 80% 12%,rgba(240,199,107,.22),transparent 30%),linear-gradient(145deg,#1f0a29,#050306)}
+    .support-media-action{position:absolute;z-index:2;right:24px;bottom:24px;width:auto;min-width:220px;white-space:nowrap}
 
     .footer{background:#080608;color:rgba(255,255,255,.76);text-align:center;padding:34px 0;font-family:Arial, Helvetica, sans-serif;border-top:1px solid rgba(217,177,95,.35)}
 
     @media (max-width:1380px){
       .nav{align-items:flex-start;flex-direction:column;padding:18px 0}.brand{min-width:0}.nav-links{width:100%;overflow-x:auto;gap:22px}.nav-links a{padding:10px 0 14px}
-      .hero-card{margin-right:32px}
       .support-section,.support-feature{scroll-margin-top:220px}
     }
     @media (max-width:1100px){
-      .hero-grid,.legacy-panel{grid-template-columns:1fr}.hero-card{margin-right:0;justify-self:center}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-feature{grid-template-areas:"media" "copy" "action";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7}.support-media::before{top:auto;right:0;bottom:0;width:auto;height:clamp(28px,6vw,58px);background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.76) 20%,transparent 100%)}.support-media::after{display:none}.support-action{min-height:280px}
+      .hero-grid,.legacy-panel{grid-template-columns:1fr}.hero-card{margin-right:0;justify-self:center}.legacy-copy{text-align:left}.legacy-image-wrap{max-width:680px;margin:0 auto}.support-feature{grid-template-areas:"media" "copy";grid-template-columns:1fr}.support-media{min-height:0;aspect-ratio:16/7}.support-media::before{top:auto;right:0;bottom:0;width:auto;height:clamp(28px,6vw,58px);background:linear-gradient(0deg,#fff 0%,rgba(255,255,255,.76) 20%,transparent 100%)}
     }
     @media (max-width:720px){
-      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{max-width:410px;padding:19px 18px}.hero-card img{width:165px}.hero-card .mission-values{font-size:.7rem;letter-spacing:.07em}.hero-actions{flex-direction:column}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.support-section{padding:48px 0}.support-heading{margin-bottom:30px}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.support-action{min-height:260px;padding:26px 22px}.support-number{top:18px;left:20px;font-size:4rem}.section-label::before{width:70px}.section-title{font-size:2.3rem}
+      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.topbar-left,.topbar-right{gap:12px}.topbar .donate-top{padding:10px 18px;border-radius:999px;align-self:flex-start}.brand img{width:70px}.brand-text{font-size:1rem}.hero{padding:38px 0}.hero-card{max-width:410px;padding:19px 18px}.hero-card img{width:165px}.hero-card .mission-values{font-size:.7rem;letter-spacing:.07em}.hero-actions{flex-direction:column}.hero-actions .btn{max-width:none}.btn{width:100%}section,.legacy-section{padding:42px 0}.legacy-panel{gap:28px}.legacy-name{font-size:3.25rem}.legacy-eyebrow{text-align:left;font-size:1rem}.legacy-flourish{justify-content:flex-start}.legacy-flourish::before,.legacy-flourish::after{max-width:100px}.legacy-copy h3{font-size:1.1rem}.legacy-copy p{font-size:1rem}.support-section{padding:48px 0}.support-heading{margin-bottom:30px}.support-stack{gap:18px}.support-section,.support-feature{scroll-margin-top:220px}.support-feature{grid-template-columns:1fr;min-height:0;border-radius:22px}.support-media{aspect-ratio:16/10}.support-media-action{right:18px;bottom:18px;width:auto;min-width:0}.support-feature-copy{padding:28px 22px}.support-feature h3{font-size:2.65rem}.section-label::before{width:70px}.section-title{font-size:2.3rem}
     }
   </style>
 </head>
@@ -185,12 +169,11 @@
         <div class="brand-text">Krewe of<br>Grady Pough, Sr.<small>KOGP</small></div>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a class="active" href="#top">Home</a>
-        <a href="#scholarships">Scholarships</a>
         <a href="#ball">Mardi Gras Ball</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate</a>
         <a href="/gallery/">Gallery</a>
         <a href="#contact">Contact</a>
-        <a href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Donate</a>
       </nav>
     </div>
   </header>
@@ -200,8 +183,8 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <h1>Building Legacies Through <span>Education</span></h1>
-          <p>The Krewe of Grady Pough, Sr. (KOGP) is a nonprofit organization based in Mobile, Alabama. Our mission is to empower students through scholarships and community support, continuing the legacy of Grady Pough, Sr.</p>
-          <p>Driven by the generosity of donors, sponsors, and fundraising events, KOGP continues to invest in the next generation &mdash; creating opportunities that leave a lasting impact year after year.</p>
+          <p>The Krewe of Grady Pough, Sr. (KOGP) is a nonprofit organization rooted in Mobile, Alabama, with a mission centered on education, opportunity, and service. Through scholarships, community support, and meaningful outreach, KOGP works to remove barriers for deserving students and help them move confidently toward brighter futures.</p>
+          <p>Inspired by the legacy of Grady Pough, Sr., our work is sustained by the generosity of donors, sponsors, community partners, and supporters who believe in the power of investing in young people. Through fundraising events and continued community engagement, KOGP is building a lasting legacy&mdash;creating opportunities today that can strengthen families, communities, and generations to come.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Join the Celebration</a>
             <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">Scholarship Applications</a>
@@ -211,7 +194,7 @@
         <aside class="hero-card">
           <img src="asset_folder/kogp-logo.png" alt="KOGP Crest Logo">
           <h3>Our Mission</h3>
-          <p>To empower deserving students through educational scholarships, breaking down financial barriers and fostering the next generation of leaders.</p>
+          <p>To empower deserving students through educational scholarships that help reduce financial barriers, expand access to opportunity, and support their pursuit of academic and personal success. Through this commitment, KOGP strives to invest in the next generation of leaders, innovators, and community changemakers who will carry that impact forward.</p>
           <p class="mission-values">Service - Scholarship - Legacy</p>
         </aside>
       </div>
@@ -254,16 +237,8 @@
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-ball.webp" alt="16th Annual KOGP Mardi Gras Ball: Sunday, February 7, 7:30 p.m. to 12:30 a.m. at Golden Flames Banquet Hall, 7060 Three Notch Road, Mobile; $60 tickets via Zeffy, light hors d'oeuvres, BYOB." loading="lazy" decoding="async">
+              <a class="btn btn-primary support-media-action" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Join the Celebration</a>
             </figure>
-            <aside class="support-action" aria-label="Join the 16th Annual KOGP Mardi Gras Ball celebration">
-              <span class="support-number" aria-hidden="true">01</span>
-              <span class="support-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M3 8.5V6h18v2.5a3 3 0 0 0 0 6V17H3v-2.5a3 3 0 0 0 0-6Z"/><path d="M8 6v11"/></svg>
-              </span>
-              <strong>Reserve your place</strong>
-              <p>Secure tickets for the annual KOGP Mardi Gras Ball.</p>
-              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/16th-annual-kogp-mardi-gras-ball" target="_blank" rel="noopener noreferrer">Join the Celebration</a>
-            </aside>
           </article>
 
           <article class="support-feature support-feature-scholarships" id="scholarships">
@@ -275,16 +250,8 @@
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-scholarship.webp" alt="Graduation cap and diploma representing the KOGP scholarship program." loading="lazy" decoding="async">
+              <a class="btn btn-primary support-media-action" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">Scholarship Applications</a>
             </figure>
-            <aside class="support-action" aria-label="Access scholarship applications">
-              <span class="support-number" aria-hidden="true">02</span>
-              <span class="support-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v4.5c2.8 2 7.2 2 10 0V12M21 9v6"/></svg>
-              </span>
-              <strong>Take the next step</strong>
-              <p>Open the scholarship folder to review and download the application materials.</p>
-              <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15MWrX336aXIKFC2pQSN_T9tNecjcNm11" target="_blank" rel="noopener noreferrer">Scholarship Applications</a>
-            </aside>
           </article>
 
           <article class="support-feature support-feature-donations" id="donations">
@@ -297,16 +264,8 @@
             </div>
             <figure class="support-media">
               <img src="asset_folder/support-donations.webp" alt="A donor placing a gift into a scholarship fund box." loading="lazy" decoding="async">
+              <a class="btn btn-primary support-media-action" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Support the Mission</a>
             </figure>
-            <aside class="support-action" aria-label="Donate to the KOGP scholarship fund">
-              <span class="support-number" aria-hidden="true">03</span>
-              <span class="support-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 20s-8-4.7-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6.3-8 11-8 11Z"/></svg>
-              </span>
-              <strong>Every gift matters</strong>
-              <p>Give securely through the KOGP scholarship fund donation page.</p>
-              <a class="btn btn-primary" href="https://www.zeffy.com/en-US/donation-form/donate-to-the-kogp-scholarship-fund" target="_blank" rel="noopener noreferrer">Support the Mission</a>
-            </aside>
           </article>
         </div>
       </div>
