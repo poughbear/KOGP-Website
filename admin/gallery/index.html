@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16051f">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="description" content="Private KOGP photo review dashboard.">
+  <title>Gallery Review | KOGP</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/asset_folder/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/asset_folder/apple-touch-icon.png">
+  <link rel="stylesheet" href="/admin/gallery/admin.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to gallery review</a>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="KOGP home">
+      <img src="/asset_folder/kogp-logo.png" alt="" width="76" height="76">
+      <span>
+        <strong>Krewe of Grady Pough, Sr.</strong>
+        <small>Private gallery administration</small>
+      </span>
+    </a>
+    <a class="public-gallery-link" href="/gallery/">View public gallery</a>
+  </header>
+
+  <main id="main-content">
+    <section class="auth-shell" id="auth-shell" aria-labelledby="auth-title">
+      <div class="auth-card">
+        <img src="/asset_folder/kogp-logo.png" alt="" width="150" height="150">
+        <p class="eyebrow">Authorized reviewers only</p>
+        <h1 id="auth-title">Gallery Review</h1>
+        <p class="auth-lede">Enter your approved administrator email. We’ll send a secure sign-in link—no password required.</p>
+
+        <form id="login-form" novalidate>
+          <label for="admin-email">Administrator email</label>
+          <input id="admin-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="you@example.com">
+          <button class="primary-button" id="login-button" type="submit">Send secure sign-in link</button>
+        </form>
+
+        <div class="auth-message" id="auth-message" role="status" aria-live="polite"></div>
+        <p class="security-note">The link signs in only this browser session. Access is verified again before any photos or uploader information are returned.</p>
+      </div>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-labelledby="dashboard-title" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <p class="eyebrow">KOGP photo moderation</p>
+          <h1 id="dashboard-title">Review the gallery</h1>
+          <p>Approve, reject, or revisit previous decisions without opening Supabase.</p>
+        </div>
+        <div class="reviewer-card">
+          <span>Signed in as</span>
+          <strong id="reviewer-email"></strong>
+          <button class="text-button" id="sign-out-button" type="button">Sign out</button>
+        </div>
+      </div>
+
+      <nav class="status-tabs" aria-label="Submission status">
+        <button class="status-tab active" type="button" data-status="pending" aria-current="page">
+          Pending <span id="pending-count">0</span>
+        </button>
+        <button class="status-tab" type="button" data-status="approved">
+          Approved <span id="approved-count">0</span>
+        </button>
+        <button class="status-tab" type="button" data-status="rejected">
+          Rejected <span id="rejected-count">0</span>
+        </button>
+      </nav>
+
+      <section class="bulk-toolbar" id="bulk-toolbar" aria-label="Bulk review actions">
+        <div class="selection-controls">
+          <label class="select-all-label">
+            <input id="select-all" type="checkbox">
+            <span>Select all shown</span>
+          </label>
+          <span class="selection-count" id="selection-count">0 selected</span>
+        </div>
+        <div class="bulk-actions">
+          <button class="action-button approve-button" id="approve-selected" type="button" disabled>Approve</button>
+          <button class="action-button reject-button" id="reject-selected" type="button" disabled>Reject</button>
+          <button class="action-button pending-button" id="pending-selected" type="button" disabled>Return to pending</button>
+        </div>
+      </section>
+
+      <div class="dashboard-alert" id="dashboard-alert" role="alert" hidden></div>
+
+      <section class="loading-state" id="loading-state" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Loading submissions…</p>
+      </section>
+
+      <section class="empty-state" id="empty-state" hidden>
+        <span aria-hidden="true">✓</span>
+        <h2 id="empty-title">The pending queue is clear.</h2>
+        <p id="empty-message">New photo submissions will appear here.</p>
+      </section>
+
+      <section class="review-grid" id="review-grid" aria-live="polite" aria-busy="true"></section>
+      <p class="limit-note" id="limit-note" hidden>Showing the newest 100 photos in this status.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-message"></span>
+    <button id="undo-button" type="button">Undo</button>
+  </div>
+
+  <dialog class="photo-viewer" id="photo-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-surface">
+      <button class="viewer-close" id="viewer-close" type="button" aria-label="Close photo">×</button>
+      <img id="viewer-image" alt="">
+      <div class="viewer-details">
+        <h2 id="viewer-title">Photo submission</h2>
+        <p id="viewer-meta"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="/admin/gallery/vendor/supabase.js" defer></script>
+  <script src="/admin/gallery/admin.js" defer></script>
+</body>
+</html>
