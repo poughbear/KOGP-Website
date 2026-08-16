@@ -3,7 +3,7 @@
 
   const GALLERY_ENDPOINT = "/.netlify/functions/gallery";
   const LOAD_TIMEOUT_MS = 15000;
-  const SLIDE_INTERVAL_MS = 6000;
+  const SLIDE_INTERVAL_MS = 4000;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const elements = {
     grid: document.querySelector("#gallery-grid"),
