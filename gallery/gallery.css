@@ -250,6 +250,49 @@ a { color: inherit; }
   line-height: 1.05;
 }
 
+.gallery-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 12px;
+}
+
+.view-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 4px;
+  background: #f2eaf4;
+  border: 1px solid #e1d3e5;
+  border-radius: 999px;
+}
+
+.view-button {
+  min-height: 42px;
+  padding: 8px 14px;
+  color: #5a4d5e;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+.view-button.is-active {
+  color: var(--white);
+  background: var(--purple-dark);
+  box-shadow: 0 8px 18px rgba(22, 5, 31, .18);
+}
+
+.view-button:focus-visible,
+.slideshow-toggle:focus-visible,
+.slideshow-nav:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
 .share-button {
   display: inline-flex;
   align-items: center;
@@ -290,6 +333,117 @@ a { color: inherit; }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.gallery-slideshow {
+  overflow: hidden;
+  background: var(--purple-deep);
+  border: 1px solid rgba(217, 177, 95, .35);
+  border-radius: 20px;
+  box-shadow: 0 16px 38px rgba(22, 5, 31, .2);
+}
+
+.slideshow-stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(74, 22, 93, .55), transparent 55%),
+    #080509;
+}
+
+.slideshow-image-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.slideshow-image-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.slideshow-image-button img.is-loaded { opacity: 1; }
+
+.slideshow-image-button:focus-visible {
+  outline: 4px solid var(--gold-bright);
+  outline-offset: -4px;
+}
+
+.slideshow-nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: 42px;
+  height: 50px;
+  padding: 0;
+  color: var(--white);
+  background: rgba(8, 5, 9, .7);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  place-items: center;
+}
+
+.slideshow-previous { left: 10px; }
+.slideshow-next { right: 10px; }
+
+.slideshow-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  padding: 14px 16px;
+  color: var(--white);
+  gap: 16px;
+}
+
+.slideshow-details > div { min-width: 0; }
+
+.slideshow-count {
+  margin: 0 0 3px;
+  color: var(--gold-bright);
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
+
+.slideshow-caption {
+  overflow: hidden;
+  margin: 0;
+  color: rgba(255, 255, 255, .86);
+  font-family: var(--sans);
+  font-size: .86rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slideshow-toggle {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 9px 14px;
+  color: #1c0c05;
+  background: linear-gradient(180deg, #f5cd72, #c7953d);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .78rem;
+  font-weight: 800;
+}
 
 .gallery-grid {
   display: grid;
@@ -478,6 +632,10 @@ a { color: inherit; }
 [hidden] { display: none !important; }
 
 @media (min-width: 560px) {
+  .gallery-actions { align-items: center; flex-direction: row; }
+  .view-switch { min-width: 238px; }
+  .share-button { flex: 0 0 auto; }
+  .slideshow-stage { aspect-ratio: 16 / 9; }
   .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -488,6 +646,7 @@ a { color: inherit; }
   .intro-inner { width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .gallery-shell { margin-top: -48px; padding: 38px 34px 44px; }
   .gallery-heading-row { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  .gallery-actions { justify-content: flex-end; width: auto; }
   .gallery-grid { gap: 14px; }
 }
 

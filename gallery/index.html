@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/gallery/gallery.css">
 </head>
 <body>
-  <a class="skip-link" href="#gallery-grid">Skip to photos</a>
+  <a class="skip-link" href="#gallery-content">Skip to photos</a>
 
   <header class="site-header">
     <div class="header-inner">
@@ -47,13 +47,19 @@
     </section>
 
     <section class="gallery-section" aria-labelledby="gallery-heading">
-      <div class="gallery-shell">
+      <div class="gallery-shell" id="gallery-content" tabindex="-1">
         <div class="gallery-heading-row">
           <div>
             <p class="section-label">KOGP memories</p>
             <h2 id="gallery-heading">Celebration in every frame</h2>
           </div>
-          <a class="share-button" href="/upload/">Share your photos</a>
+          <div class="gallery-actions">
+            <div class="view-switch" id="view-switch" role="group" aria-label="Choose gallery view" hidden>
+              <button class="view-button is-active" id="slideshow-view-button" type="button" aria-controls="gallery-slideshow" aria-pressed="true">Slideshow</button>
+              <button class="view-button" id="thumbnail-view-button" type="button" aria-controls="gallery-grid" aria-pressed="false">Thumbnails</button>
+            </div>
+            <a class="share-button" href="/upload/">Share your photos</a>
+          </div>
         </div>
 
         <div class="gallery-status" id="gallery-status" role="status" aria-live="polite">
@@ -61,7 +67,24 @@
           <span>Gathering the latest photos…</span>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid" aria-busy="true"></div>
+        <section class="gallery-slideshow" id="gallery-slideshow" aria-label="KOGP photo slideshow" hidden>
+          <div class="slideshow-stage">
+            <button class="slideshow-image-button" id="slideshow-image-button" type="button" aria-label="Open current photo">
+              <img id="slideshow-image" alt="" decoding="async" fetchpriority="high">
+            </button>
+            <button class="slideshow-nav slideshow-previous" id="slideshow-previous" type="button" aria-label="Previous photo">‹</button>
+            <button class="slideshow-nav slideshow-next" id="slideshow-next" type="button" aria-label="Next photo">›</button>
+          </div>
+          <div class="slideshow-details">
+            <div>
+              <p class="slideshow-count" id="slideshow-count"></p>
+              <p class="slideshow-caption" id="slideshow-caption"></p>
+            </div>
+            <button class="slideshow-toggle" id="slideshow-toggle" type="button" aria-pressed="true">Pause slideshow</button>
+          </div>
+        </section>
+
+        <div class="gallery-grid" id="gallery-grid" aria-busy="true" hidden></div>
 
         <section class="empty-state" id="empty-state" hidden>
           <div class="empty-icon" aria-hidden="true">
